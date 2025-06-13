@@ -12,7 +12,7 @@ Feature: Login
   Scenario: Login practice test automation Not Valid Username
     Given I open the Chrome browser 1
     When I navigate to web practice test automation
-    When I Input Not    Valid Username and Valid Password
+    When I Input Not Valid Username and Valid Password
     When I Click Submit
     Then I Verify error massage 'Your username is invalid!'
 
