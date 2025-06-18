@@ -39,14 +39,21 @@ public class Steps_Login {
     }
     @When("user Input invalid Username & Valid Password")
     public void userInputInvalidUsernameValidPassword() {
+        driver.findElement(By.name("username")).sendKeys("Dandi");
+        pause(2000);
+        driver.findElement(By.name("password")).sendKeys("Admin123");
+        pause(2000);
+    }
+    @When("user Input valid Username & invalid Password")
+    public void userInputValidUsernameInvalidPassword() {
         driver.findElement(By.name("username")).sendKeys("Admin");
         pause(2000);
         driver.findElement(By.name("password")).sendKeys("Error123");
         pause(2000);
     }
-    @When("user Input valid Username & invalid Password")
-    public void userInputValidUsernameInvalidPassword() {
-        driver.findElement(By.name("username")).sendKeys("Dandi");
+    @When("user Input valid Username Empty")
+    public void userInputValidUsernameEmpty() {
+        driver.findElement(By.name("username")).sendKeys("");
         pause(2000);
         driver.findElement(By.name("password")).sendKeys("admin123");
         pause(2000);
@@ -68,5 +75,18 @@ public class Steps_Login {
         String actualError = errorusername.getText();
         Assert.assertTrue(actualError.contains("Invalid credentials"));
         driver.quit();
+    }
+    @Then("user verify Error Message Empty")
+    public void userVerifyErrorMessageEmpty() {
+        WebElement errorusername = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/span"));
+        String actualError = errorusername.getText();
+        Assert.assertTrue(actualError.contains("Required"));
+    }
+    @Then("user verify Color Text field change to red")
+    public void userVerifyColorTextFieldChangeToRed() {
+        WebElement inputField = driver.findElement(By.name("username"));
+        String borderColor = inputField.getCssValue("border-color");
+        String expectedColor = "rgb(235, 9, 16)";
+        Assert.assertEquals("Expected border color to be red", expectedColor, borderColor);
     }
 }

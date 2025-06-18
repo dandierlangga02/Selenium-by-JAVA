@@ -17,3 +17,10 @@ Feature: Scenario Login
     When user Input valid Username & invalid Password
     And user Click button Login
     Then user verify Error Message
+
+  Scenario: Login valid Username Empty
+    Given user open web "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+    When user Input valid Username Empty
+    And user Click button Login
+    Then user verify Error Message Empty
+    Then user verify Color Text field change to red
