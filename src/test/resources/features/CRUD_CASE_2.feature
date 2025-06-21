@@ -41,3 +41,17 @@ Feature: Create Read Update Delete
     And I Update Lastname
     And I Click Button Save
     Then I Verify Update LastName
+
+  Scenario: Delete
+    Given I Open Website "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+    When I Login Website and Click Submit
+    And I Click Sub Menu PIM
+    And I Click Button Down Fill
+    And I Fill Field Employee Name
+    And I Click Button Search
+    And I click button Delete
+    And I click Yes, Delete
+    Then I Verify name was Delete is not Appear
+
+
+

@@ -149,4 +149,24 @@ public class CRUD_CASE_2 {
         String Expected = "Setiawan";
         Assert.assertEquals(Expected,ActualValue);
     }
+    @And("I click button Delete")
+    public void iClickButtonDelete() {
+        pause(3000);
+        driver.findElement(By.cssSelector(".oxd-icon.bi-trash")).click();
+    }
+    @And("I click Yes, Delete")
+    public void iClickYesDelete() {
+        pause(3000);
+        driver.findElement(By.cssSelector(".oxd-icon.bi-trash.oxd-button-icon")).click();
+    }
+    @Then("I Verify name was Delete is not Appear")
+    public void iVerifyNameWasDeleteIsNotAppear() {
+        pause(4000);
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[2]")).click();
+        pause(4000);
+        WebElement value = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/span"));
+        String ActualValue = value.getText();
+        String ExpectedValue = "No Records Found";
+        Assert.assertEquals(ExpectedValue,ActualValue);
+    }
 }
